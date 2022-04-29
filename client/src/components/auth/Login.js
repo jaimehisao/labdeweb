@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Form, Input, Button, Layout } from 'antd';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 
 const Login = () => {
 

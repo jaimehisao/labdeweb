@@ -1,4 +1,4 @@
-import './App.css'
+import './css/App.css'
 import 'antd/dist/antd.min.css';
 import Login from './components/auth/Login'
 
