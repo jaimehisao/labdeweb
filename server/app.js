@@ -13,6 +13,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+// AUTH USER
+app.use('/api/auth', require('./routes/auth'))
+
 const port = process.env.PORT || 3001
 
 const server = app.listen(port, () => {
