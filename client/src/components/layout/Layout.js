@@ -1,23 +1,64 @@
 import React from 'react'
-import { Layout } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { 
+  Header, 
+  Footer,
+  Content 
+} = Layout;
 
-const StudetLayout = ({children}) => {
+const HomeLayout = ({children}) => {
+
   return (
     <Layout style={{minHeight:"100vh"}}>
 
-        <Header>
-          NAVBAR
+        <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+
+          <div className="logo" />
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            defaultSelectedKeys={['1']}
+            items={     
+              [
+                {
+                  key: "1",
+                  label: `KODECRAFT`,
+                },
+                {
+                  key: "2",
+                  label: `TAREAS`,
+                },
+                {
+                  key: "3",
+                  label: `RETOS`,
+                },
+                {
+                  key: "4",
+                  label: `ACTIVIDADES`,
+                },
+
+              ]
+          }
+          />
+
         </Header>
-        <Content>
+        <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>{"USERNAME"}</Breadcrumb.Item>
+          </Breadcrumb>
+          <div className="site-layout-background" style={{ padding: 24, minHeight: 400 }}>
             {children}
+          </div>
+
         </Content>
         <Footer>
+
             CodeKraft MX
+
         </Footer>
     </Layout>
   )
 }
 
-export default StudetLayout
+export default HomeLayout
