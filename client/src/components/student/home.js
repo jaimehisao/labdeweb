@@ -5,7 +5,7 @@ import { Row, Col } from 'antd';
 
 const Home = () => {
 
-  const Home = () => (
+  const MainBlock = () => (
     <div>
       <Row justify="space-around">
         <Col className='activity-block' span={4}>TAREAS</Col>
@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
      <HomeLayout>
-       <Home />
+       <MainBlock />
      </HomeLayout>
   )
 }

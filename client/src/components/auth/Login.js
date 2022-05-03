@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Form, Input, Button, Layout } from 'antd';
+import { Form, Input, Button, Layout, Row, Col } from 'antd';
 
 const { Header, Footer, Content } = Layout;
 
@@ -8,10 +8,19 @@ const Login = () => {
 
     const onFinish = (values) => {
         console.log('Success:', values);
+        // POST TO AXIOS LOGIN
+        
+        try {
+
+        } catch (e) {
+          // ERROR WRONG CREDENTIALS 
+
+        }
       };
     
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
+        // ERROR TO RE-ENTER VALUES BECASUE MISSING
       };
 
     const LoginForm = () => (
@@ -73,13 +82,19 @@ const Login = () => {
         <div>
             <Layout style={{height:"100vh"}}>
                 <Header>
-                    <h1>CodeKraft</h1>
+                  CODERKAFT
                 </Header>
                 <Content>
                     <br />
-                    <LoginForm />
+                    <Row type="flex" justify='space-evenly'>
+                      <Col align='middle' >
+                        <LoginForm />
+                      </Col>
+                    </Row>
                 </Content>
-                <Footer>Footer</Footer>
+                <Footer>
+                  CodeKraft MX
+                </Footer>
             </Layout>
         </div>
   )
