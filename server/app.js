@@ -18,6 +18,10 @@ app.use('/api/auth', require('./routes/auth'))
 
 const port = process.env.PORT || 3001
 
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 const server = app.listen(port, () => {
     console.log('Codekraft port: ' + port)
 })
