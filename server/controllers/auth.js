@@ -3,8 +3,24 @@ const User = require('../models/user.model')
 // REGISTER
 // POST
 exports.register = async (req, res, next) => {
-//TODO llamara la base
+    //TODO llamara la base
 
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+        return res.status(400).json({
+            success: false,
+            message: 'Se necesita un nombre, e-mail y clave'
+        })
+    }
+
+
+
+    // Revision de la seguridad de la password (mayusculas, simbolos)
+
+    // Verificar que no exista en la base de datos
+
+    //
 
     // DATA FROM REQ
 
