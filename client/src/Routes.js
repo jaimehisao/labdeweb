@@ -3,8 +3,8 @@ import { Routes as Switch, Route } from 'react-router-dom'
 
 // IMPORTS
 import App from './App'
-import HomeStudent from './components/student/home'
-import HomeAdmin from './components/admin/home'
+import HomeStudent from './components/student/Home'
+import HomeAdmin from './components/admin/Home'
 
 
 const Routes = () => {
@@ -14,12 +14,9 @@ const Routes = () => {
             <Route path='/home/student' element={<HomeStudent />} />
             <Route path='/home/admin' element={<HomeAdmin />} />
 
-            {/* 
-
             <Route path='/home/student' element={<HomeStudent />} />
             <Route path='/home/admin' element={<HomeAdmin />} />
 
-            */}
         </Switch>
     )
 }
