@@ -23,7 +23,7 @@ const HomeLayout = ({children}) => {
               [
                 {
                   key: "1",
-                  label: `KODECRAFT`,
+                  label: `CODEKRAFT`,
                 },
                 {
                   key: "2",
