@@ -1,5 +1,5 @@
 const User = require('../models/user.model')
-const regex = require(regex)
+const regex = require("regex")
 
 // REGISTER
 // POST

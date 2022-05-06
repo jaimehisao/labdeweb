@@ -6,7 +6,7 @@ const cors = require('cors')
 const connectDB = require('./db/db')
 
 // connect to mongo
-connectDB(process.env.MONGO_URI)
+// connectDB(process.env.MONGO_URI)
 
 const app = express()
 
