@@ -21,6 +21,8 @@ app.use('/api/auth', require('./routes/auth'))
 
 const port = process.env.PORT || 3001
 
+console.log(port)
+
 app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
   });
