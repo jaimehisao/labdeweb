@@ -31,9 +31,9 @@ const Home = () => {
         </Carousel>
 
       <Row justify="space-around">
-        <Col className='activity-block' span={5}>SUBIR TAREAS</Col>
-        <Col className='activity-block' span={5}>SUBIR ACTIVIDADES</Col>
-        <Col className='activity-block' span={5}>SUBIR PRESENTACIONES</Col>
+        <Col className='activity-block' span={5}>SUBIR ARCHIVOS</Col>
+        <Col className='activity-block' span={5}>VISUALIZAR ARCHIVOS</Col>
+        <Col className='activity-block' span={5}>ELIMINAR ARCHIVOS</Col>
       </Row>
     </div>
   )

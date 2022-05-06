@@ -5,6 +5,7 @@ import { Routes as Switch, Route } from 'react-router-dom'
 import App from './App'
 import HomeStudent from './components/student/Home'
 import HomeAdmin from './components/admin/Home'
+import Upload from './components/admin/Upload'
 
 
 const Routes = () => {
@@ -13,10 +14,7 @@ const Routes = () => {
             <Route path='/' element={<App />} />
             <Route path='/home/student' element={<HomeStudent />} />
             <Route path='/home/admin' element={<HomeAdmin />} />
-
-            <Route path='/home/student' element={<HomeStudent />} />
-            <Route path='/home/admin' element={<HomeAdmin />} />
-
+            <Route path='/home/admin/upload' element={<Upload />} />
         </Switch>
     )
 }
