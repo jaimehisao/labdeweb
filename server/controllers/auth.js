@@ -28,9 +28,18 @@ exports.register = async (req, res, next) => {
 
 
     // Verificar que no exista en la base de datos
-
+    const user = await User.findOne({ email }).select("+password")
     //
+    if (!user) {
 
+
+
+    } else {
+        return res.status(404).json({
+            success: false,
+            message: 'Usuario ya existe! Intente hacer Log-In!'
+        })
+    }
     // DATA FROM REQ
 
 
