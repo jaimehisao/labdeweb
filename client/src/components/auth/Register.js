@@ -5,9 +5,10 @@ import { Form, Input, Button, Layout, Row, Col } from 'antd';
 //Routing imports
 import { Outlet, Link } from "react-router-dom";
 
+
 const { Header, Footer, Content } = Layout;
 
-const Login = () => {
+const Register = () => {
 
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -26,7 +27,7 @@ const Login = () => {
         // ERROR TO RE-ENTER VALUES BECASUE MISSING
       };
 
-    const LoginForm = () => (
+    const RegisterForm = () => (
           <Form
             name="basic"
             labelCol={{
@@ -75,11 +76,11 @@ const Login = () => {
               }}
             >
               <Button type="primary" htmlType="submit">
-                Submit
+                Register
               </Button>
               <Button>
               <li>
-              <Link to="/auth/register">Sign Up!</Link>
+              <Link to="/">Return</Link>
               </li>
               </Button>
             </Form.Item>
@@ -96,7 +97,7 @@ const Login = () => {
                     <br />
                     <Row type="flex" justify='space-evenly'>
                       <Col align='middle' >
-                        <LoginForm />
+                        <RegisterForm />
                       </Col>
                     </Row>
                 </Content>
@@ -108,4 +109,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
