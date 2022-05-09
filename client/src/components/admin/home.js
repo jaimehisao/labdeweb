@@ -1,14 +1,17 @@
 import React from 'react'
 import '../../css/App.css'
-import HomeLayout from '../layout/Layout'
+import HomeLayout from '../layout/LayoutAdmin'
 import { Carousel } from 'antd'
 import { Row, Col } from 'antd'
-import photo from '../../assets/tareas.png'
+import subir from '../../assets/subir.png'
+import verarch from '../../assets/verarch.png'
+import vertodo from '../../assets/vertodo.png'
 
 const Home = () => {
 
   const contentStyle = {
     height: '480px',
+    width: '1400px',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',
@@ -20,13 +23,13 @@ const Home = () => {
 
     <Carousel effect="fade">
           <div>
-          <h3 style={contentStyle}><img src={photo} alt="photo" class="center" /></h3>
+          <h3 style={contentStyle}><img src={subir} alt="" class="center" /></h3>
           </div>
           <div>
-            <h3 style={contentStyle}><img src={photo} alt="photo" class="center" /></h3>
+            <h3 style={contentStyle}><img src={verarch} alt="photo" class="center" /></h3>
           </div>
           <div>
-            <h3 style={contentStyle}>3</h3>
+          <h3 style={contentStyle}><img src={vertodo} alt="photo" class="center" /></h3>
           </div>
         </Carousel>
 
