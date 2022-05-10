@@ -1,10 +1,11 @@
 const User = require('../models/user.model')
-const regex = require("regex")
+// TRUENA LA CONEXION DE MONGO (NOSE PORQUE)
+// const regex = require("regex")
 
 // REGISTER
 // POST
 exports.register = async (req, res, next) => {
-    //TODO llamara la base
+    //TO-DO llamara la base
 
     const { name, email, password } = req.body;
 
@@ -16,7 +17,7 @@ exports.register = async (req, res, next) => {
     }
 
     // Revisamos que la contraseña cumpla con los estandares de seguridad.
-    const re = new RegExp('/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/');
+    const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
 
     if (!re){
         return res.status(400).json({
@@ -24,8 +25,6 @@ exports.register = async (req, res, next) => {
             message: 'La contraseña debe ser de 6-16 caracteres y con minimo un caracter especial y un numero.'
         })
     }
-
-
 
     // Verificar que no exista en la base de datos
     const user = await User.findOne({ email }).select("+password")
@@ -40,10 +39,6 @@ exports.register = async (req, res, next) => {
             message: 'Usuario ya existe! Intente hacer Log-In!'
         })
     }
-    // DATA FROM REQ
-
-
-
 }
 
 // LOGIN
