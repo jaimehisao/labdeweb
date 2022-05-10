@@ -1,13 +1,10 @@
 const User = require('../models/user.model')
-// TRUENA LA CONEXION DE MONGO (NOSE PORQUE)
-// const regex = require("regex")
 
 // REGISTER
 // POST
 exports.register = async (req, res, next) => {
-    //TO-DO llamara la base
 
-    const { name, email, password } = req.body;
+    const { name, email, password, userType, level } = req.body;
 
     if (!name || !email || !password) {
         return res.status(400).json({
@@ -27,11 +24,25 @@ exports.register = async (req, res, next) => {
     }
 
     // Verificar que no exista en la base de datos
-    const user = await User.findOne({ email }).select("+password")
+    const userSearch = await User.findOne({ email }).select("+password")
+
     //
-    if (!user) {
+    if (!userSearch) {
 
+        const user = await User.create({
+            username: name,
+            email,
+            password,
+            userType,
+            level,
+        })
 
+        const token = user.getSignedToken()
+
+        res.status(201).json({
+            success: true,
+            token
+        })
 
     } else {
         return res.status(404).json({

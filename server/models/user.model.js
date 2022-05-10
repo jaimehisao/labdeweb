@@ -32,7 +32,7 @@ const UserSchema = new Schema({
     level: {
         type: String, 
         enum : ['VIDEO JUEGOS', 'PYTHON BASICO', 'PYTHON INTERMEDIO'],
-        required: true, 
+        required: function() { return this.userType === 'STUDENT'; }, // Only required if user is a STUDENT
     },
     approvedUser: {
         type: Boolean,
