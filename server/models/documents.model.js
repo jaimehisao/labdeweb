@@ -7,7 +7,7 @@ const DocumentsSchema = new Schema({
         required: [true, 'Please provide a name for the file']
     },
     file: {
-        type: Buffer, 
+        type: String, 
         required: true
     },
     activityType: {

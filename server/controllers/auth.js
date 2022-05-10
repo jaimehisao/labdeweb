@@ -6,6 +6,7 @@ exports.register = async (req, res, next) => {
 
     const { name, email, password, userType, level } = req.body;
 
+
     if (!name || !email || !password) {
         return res.status(400).json({
             success: false,
@@ -13,8 +14,8 @@ exports.register = async (req, res, next) => {
         })
     }
 
-    // Revisamos que la contraseña cumpla con los estandares de seguridad.
-    const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+     // Revisamos que la contraseña cumpla con los estandares de seguridad.
+     const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
 
     if (!re){
         return res.status(400).json({
@@ -23,32 +24,35 @@ exports.register = async (req, res, next) => {
         })
     }
 
-    // Verificar que no exista en la base de datos
-    const userSearch = await User.findOne({ email }).select("+password")
+    try {
+        // Verificar que no exista en la base de datos
+        const userSearch = await User.findOne({ email }).select("+password")
 
-    //
-    if (!userSearch) {
+        if (!userSearch) {
 
-        const user = await User.create({
-            username: name,
-            email,
-            password,
-            userType,
-            level,
-        })
+            const user = await User.create({
+                username: name,
+                email,
+                password,
+                userType,
+                level,
+            })
 
-        const token = user.getSignedToken()
+            const token = user.getSignedToken()
 
-        res.status(201).json({
-            success: true,
-            token
-        })
+            res.status(201).json({
+                success: true,
+                token
+            })
 
-    } else {
-        return res.status(404).json({
-            success: false,
-            message: 'Usuario ya existe! Intente hacer Log-In!'
-        })
+        } else {
+            return res.status(404).json({
+                success: false,
+                message: 'Usuario ya existe! Intente hacer Log-In!'
+            })
+        }
+    } catch (error) {
+        next(error)
     }
 }
 
