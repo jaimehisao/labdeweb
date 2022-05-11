@@ -1,5 +1,7 @@
 import React from 'react';
 import { Routes as Switch, Route } from 'react-router-dom'
+import { UserProvider } from './contexts/UserContext'
+import PrivateRoute from './PrivateRoute';
 
 // IMPORTS
 import App from './App'
@@ -12,14 +14,19 @@ import VisualizeFile from './components/admin/VisualizeFile'
 
 const Routes = () => {
     return (
-        <Switch>
-            <Route path='/' element={<App />} />
-            <Route path='/home/student' element={<HomeStudent />} />
-            <Route path='/home/admin' element={<HomeAdmin />} />
-            <Route path='/home/admin/upload' element={<Upload />} />
-            <Route path='/home/admin/visualizeall' element={<VisualizeAll />} />
-            <Route path='/home/admin/visualizefile' element={<VisualizeFile />} />
-        </Switch>
+        <UserProvider>
+            <Switch>
+                <Route path='/' element={<App />} />
+                {/* Private Routes */}
+                <Route element={<PrivateRoute />}>
+                    <Route path='/home/student' element={<HomeStudent />} />
+                    <Route path='/home/admin' element={<HomeAdmin />} />
+                    <Route path='/home/admin/upload' element={<Upload />} />
+                    <Route path='/home/admin/visualizeall' element={<VisualizeAll />} />
+                    <Route path='/home/admin/visualizefile' element={<VisualizeFile />} />
+                </Route>
+            </Switch>
+        </UserProvider>
     )
 }
 

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd';
+import UserContext from '../../contexts/UserContext';
 
 const { 
   Header, 
@@ -8,6 +9,24 @@ const {
 } = Layout;
 
 const HomeLayout = ({children}) => {
+
+  const { handleLogout } = useContext(UserContext)
+
+  const menuFunctions = (val) => {
+
+    if (val === 'home') {
+
+    } else if (val === 'tareas') {
+
+    } else if (val === 'retos') {
+      
+    } else if (val === 'actividades') {
+      
+    } else if (val === 'logout') {
+      handleLogout()
+    }
+
+  }
 
   return (
     <Layout style={{minHeight:"100vh"}}>
@@ -37,6 +56,12 @@ const HomeLayout = ({children}) => {
                   key: "4",
                   label: `VER ARCHIVO`,
                 },
+                {
+                  key: "5",
+                  label: `LOG OUT`,
+                  style: { float: 'right'},
+                  onClick: (e) => { menuFunctions('logout') },
+                }
 
               ]
           }
