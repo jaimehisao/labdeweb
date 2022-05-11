@@ -32,7 +32,7 @@ const UserSchema = new Schema({
     level: {
         type: String, 
         enum : ['VIDEO JUEGOS', 'PYTHON BASICO', 'PYTHON INTERMEDIO'],
-        required: true, 
+        required: function() { return this.userType === 'STUDENT'; }, // Only required if user is a STUDENT
     },
     approvedUser: {
         type: Boolean,
@@ -59,7 +59,16 @@ UserSchema.methods.matchPasswords = async function (password) {
 }
 
 UserSchema.methods.getSignedToken = function () {
-    return jwt.sign({ id: this._id, username: this.username, email: this.email }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE })
+
+    let usr = {
+        id: this._id, 
+        username: this.username, 
+        email: this.email, 
+        userType: this.userType, 
+        level: this.userType === "STUDENT" ? this.level : null
+    }
+
+    return jwt.sign( usr , process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE })
 }
 
 const User = mongoose.model('User', UserSchema)

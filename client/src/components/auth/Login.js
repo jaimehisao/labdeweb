@@ -1,25 +1,35 @@
-//Basic imports
-import React from 'react'
-import { Form, Input, Button, Layout, Row, Col } from 'antd';
-
-//Routing imports
-import { Outlet, Link } from "react-router-dom";
-
+import React, { useContext, useEffect } from 'react'
+import { Form, Input, Button, Layout, Row, Col } from 'antd'
+import UserContext from '../../contexts/UserContext'
+import { useNavigate } from "react-router-dom"
+import { decodeToken } from "react-jwt";
 const { Header, Footer, Content } = Layout;
 
 const Login = () => {
+    const navigate = useNavigate()
+    const { user, userType, handleLogin, setUser } = useContext(UserContext)
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
-        // POST TO AXIOS LOGIN
-        
-        try {
+    useEffect(() => {
 
-        } catch (e) {
-          // ERROR WRONG CREDENTIALS 
+      if (user) {
+        userType === "ADMIN" ? navigate('/home/admin') : navigate('/home/student')
+      }
 
+    }, [])
+
+    const onFinish = async (values) => {
+        const data = await handleLogin(values)
+
+        if (data.success) {
+          const decodedToken = decodeToken(data.token)
+          console.log(decodedToken)
+          decodedToken.userType === "ADMIN" ? navigate('/home/admin') : navigate('/home/student')
+          
+        } else if (data.success === false) {
+            // setError('Failed to log in')
         }
-      };
+    }
+
     
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -43,12 +53,12 @@ const Login = () => {
             autoComplete="off"
           >
             <Form.Item
-              label="Username"
-              name="username"
+              label="Correo"
+              name="email"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your username!',
+                  message: 'Favor de entrar con su correo!',
                 },
               ]}
             >
@@ -61,7 +71,7 @@ const Login = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Please input your password!',
+                  message: 'Favor de agregar su clave!',
                 },
               ]}
             >
@@ -90,7 +100,7 @@ const Login = () => {
         <div>
             <Layout style={{height:"100vh"}}>
                 <Header>
-                  CODERKAFT
+                  CODEKRAFT
                 </Header>
                 <Content>
                     <br />

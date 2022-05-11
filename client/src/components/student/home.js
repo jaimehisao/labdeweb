@@ -3,7 +3,9 @@ import '../../css/App.css'
 import HomeLayout from '../layout/Layout'
 import { Row, Col } from 'antd'
 import { Carousel } from 'antd'
-import photo from '../../assets/tareas.png'
+import tareas from '../../assets/tareas.png'
+import retos from '../../assets/retos.png'
+import acts from '../../assets/acts.png'
 
 const Home = () => {
 
@@ -20,13 +22,13 @@ const Home = () => {
 
     <Carousel effect="fade">
       <div>
-      <h3 style={contentStyle}><img src={photo} alt="photo" class="center" /></h3>
+      <h3 style={contentStyle}><img src={tareas} alt="photo" className="center" /></h3>
       </div>
       <div>
-        <h3 style={contentStyle}><img src={photo} alt="photo" class="center" /></h3>
+        <h3 style={contentStyle}><img src={retos} alt="photo" className="center" /></h3>
       </div>
       <div>
-        <h3 style={contentStyle}>3</h3>
+      <h3 style={contentStyle}><img src={acts} alt="photo" className="center" /></h3>
       </div>
     </Carousel>
 

@@ -1,0 +1,23 @@
+{
+  "name": "labdeweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd server && npm install",
+    "deploy": "cd server && npm run start",
+    "start": "cd server && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaimehisao/labdeweb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaimehisao/labdeweb/issues"
+  },
+  "homepage": "https://github.com/jaimehisao/labdeweb#readme"
+}

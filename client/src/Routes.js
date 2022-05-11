@@ -1,23 +1,38 @@
 import React from 'react';
 import { Routes as Switch, Route } from 'react-router-dom'
+import { UserProvider } from './contexts/UserContext'
+import PrivateRoute from './PrivateRoute';
 
 // IMPORTS
 import App from './App'
 import Register from './components/auth/Register'
 import HomeStudent from './components/student/Home'
 import HomeAdmin from './components/admin/Home'
-
+import Upload from './components/admin/Upload'
+import VisualizeAll from './components/admin/VisualizeAll'
+import VisualizeFile from './components/admin/VisualizeFile'
+import FileList from './components/student/FileList'
+import HomeLayout from './components/layout/Layout'
 
 const Routes = () => {
     return (
-        <Switch>
-            <Route path='/' element={<App />} />
-            <Route path='/auth/register' element={<Register />} />
+        <UserProvider>
+            <Switch>
+                <Route path='/' element={<App />} />
 
-            <Route path='/home/student' element={<HomeStudent />} />
-            <Route path='/home/admin' element={<HomeAdmin />} />
+                {/* Private Routes */}
+                <Route element={<PrivateRoute />}>
+                    <Route path='/home/student' element={<HomeStudent />} />
+                    <Route path='/home/admin' element={<HomeAdmin />} />
+                    <Route path='/auth/register' element={<Register />} />
+                    <Route path='/home/admin/upload' element={<Upload />} />
+                    <Route path='/home/admin/visualizeall' element={<VisualizeAll />} />
+                    <Route path='/home/admin/visualizefile' element={<VisualizeFile />} />
+                    <Route path='/documentos/:type' element={<FileList />} />
+                </Route>
 
-        </Switch>
+            </Switch>
+        </UserProvider>
     )
 }
 

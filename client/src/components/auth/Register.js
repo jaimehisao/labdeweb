@@ -5,26 +5,25 @@ import { Form, Input, Button, Layout, Row, Col } from 'antd';
 //Routing imports
 import { Outlet, Link } from "react-router-dom";
 
-
 const { Header, Footer, Content } = Layout;
 
 const Register = () => {
 
     const onFinish = (values) => {
         console.log('Success:', values);
-        // POST TO AXIOS LOGIN
+        // POST TO AXIOS REGISTER
         
         try {
 
         } catch (e) {
-          // ERROR WRONG CREDENTIALS 
+          // ERROR 
 
         }
       };
     
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
-        // ERROR TO RE-ENTER VALUES BECASUE MISSING
+        // ERROR TO RE-ENTER VALUES BECASUE MISSING INFO
       };
 
     const RegisterForm = () => (
@@ -75,14 +74,18 @@ const Register = () => {
                 span: 16,
               }}
             >
-              <Button type="primary" htmlType="submit">
-                Register
-              </Button>
-              <Button>
-              <li>
-              <Link to="/">Return</Link>
-              </li>
-              </Button>
+                <Row type="flex" justify='space-evenly'>
+                      <Col align='middle'>
+                        <Button type="primary" htmlType="submit" style={styles.button}>
+                        Register
+                        </Button>
+                        <Button style={styles.button}>
+                        <li>
+                        <Link to="/">Return</Link>
+                        </li>
+                        </Button>
+                      </Col>
+                    </Row>
             </Form.Item>
           </Form>
         );
@@ -91,7 +94,7 @@ const Register = () => {
         <div>
             <Layout style={{height:"100vh"}}>
                 <Header>
-                  CODERKAFT
+                  CODERKRAFT
                 </Header>
                 <Content>
                     <br />
@@ -108,5 +111,19 @@ const Register = () => {
         </div>
   )
 }
+
+const styles = StyleSheet.create({
+
+    button: {
+        backgroundColor: '#5B9962',
+        height: 50,
+        borderRadius: 5,
+        marginHorizontal: 15,
+        marginVertical: 10,
+        alignItems: 'center',
+        justifyContent: 'space-around'
+      },
+
+});
 
 export default Register

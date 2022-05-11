@@ -4,10 +4,56 @@ const User = require('../models/user.model')
 // POST
 exports.register = async (req, res, next) => {
 
-    // DATA FROM REQ
+    const { name, email, password, userType, level } = req.body;
 
 
+    if (!name || !email || !password) {
+        return res.status(400).json({
+            success: false,
+            message: 'Se necesita un nombre, e-mail y clave para poder registrarse'
+        })
+    }
 
+     // Revisamos que la contraseña cumpla con los estandares de seguridad.
+     const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+
+    if (!re){
+        return res.status(400).json({
+            success: false,
+            message: 'La contraseña debe ser de 6-16 caracteres y con minimo un caracter especial y un numero.'
+        })
+    }
+
+    try {
+        // Verificar que no exista en la base de datos
+        const userSearch = await User.findOne({ email }).select("+password")
+
+        if (!userSearch) {
+
+            const user = await User.create({
+                username: name,
+                email,
+                password,
+                userType,
+                level,
+            })
+
+            const token = user.getSignedToken()
+
+            res.status(201).json({
+                success: true,
+                token
+            })
+
+        } else {
+            return res.status(404).json({
+                success: false,
+                message: 'Usuario ya existe! Intente hacer Log-In!'
+            })
+        }
+    } catch (error) {
+        next(error)
+    }
 }
 
 // LOGIN
