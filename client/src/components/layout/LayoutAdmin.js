@@ -20,11 +20,17 @@ const HomeLayout = ({children}) => {
 
       navigate('/home/admin')
 
-    } else if (val === 'tareas') {
+    } else if (val === 'subir') {
 
-    } else if (val === 'retos') {
+      navigate('/home/admin/upload')
+
+    } else if (val === 'ver') {
+
+      navigate('/home/admin/visualizeall')
       
-    } else if (val === 'actividades') {
+    } else if (val === 'eliminar') {
+
+      navigate('/home/admin')
       
     } else if (val === 'logout') {
       handleLogout()
@@ -47,18 +53,22 @@ const HomeLayout = ({children}) => {
                 {
                   key: "1",
                   label: `CODEKRAFT`,
+                  onClick: (e) => { menuFunctions('home') }
                 },
                 {
                   key: "2",
                   label: `SUBIR`,
+                  onClick: (e) => { menuFunctions('subir') }
                 },
                 {
                   key: "3",
                   label: `VER ARCHIVOS`,
+                  onClick: (e) => { menuFunctions('ver') }
                 },
                 {
                   key: "4",
                   label: `ELIMINAR ARCHIVO`,
+                  onClick: (e) => { menuFunctions('eliminar') }
                 },
                 {
                   key: "5",
