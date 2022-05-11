@@ -5,6 +5,7 @@ import PrivateRoute from './PrivateRoute'
 
 // IMPORTS
 import App from './App'
+import Register from './components/auth/Register'
 import HomeStudent from './components/student/Home'
 import HomeAdmin from './components/admin/Home'
 import Upload from './components/admin/Upload'
@@ -21,6 +22,7 @@ const Routes = () => {
                 <Route element={<PrivateRoute />}>
                     <Route path='/home/student' element={<HomeStudent />} />
                     <Route path='/home/admin' element={<HomeAdmin />} />
+                    <Route path='/auth/register' element={<Register />} />
                     <Route path='/home/admin/upload' element={<Upload />} />
                     <Route path='/home/admin/visualizeall' element={<VisualizeAll />} />
                     <Route path='/documentos/:type' element={<FileList />} />

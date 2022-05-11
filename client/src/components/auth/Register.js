@@ -1,42 +1,32 @@
-import React, { useContext, useEffect } from 'react'
-import { Form, Input, Button, Layout, Row, Col } from 'antd'
-import UserContext from '../../contexts/UserContext'
-import { useNavigate } from "react-router-dom"
-import { decodeToken } from "react-jwt";
+//Basic imports
+import React from 'react'
+import { Form, Input, Button, Layout, Row, Col } from 'antd';
+
+//Routing imports
+import { Outlet, Link } from "react-router-dom";
+
 const { Header, Footer, Content } = Layout;
 
-const Login = () => {
-    const navigate = useNavigate()
-    const { user, userType, handleLogin, setUser } = useContext(UserContext)
+const Register = () => {
 
-    useEffect(() => {
+    const onFinish = (values) => {
+        console.log('Success:', values);
+        // POST TO AXIOS REGISTER
+        
+        try {
 
-      if (user) {
-        userType === "ADMIN" ? navigate('/home/admin') : navigate('/home/student')
-      }
+        } catch (e) {
+          // ERROR 
 
-    }, [])
-
-    const onFinish = async (values) => {
-        const data = await handleLogin(values)
-
-        if (data.success) {
-          const decodedToken = decodeToken(data.token)
-          console.log(decodedToken)
-          decodedToken.userType === "ADMIN" ? navigate('/home/admin') : navigate('/home/student')
-          
-        } else if (data.success === false) {
-            // setError('Failed to log in')
         }
-    }
-
+      };
     
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
-        // ERROR TO RE-ENTER VALUES BECASUE MISSING
+        // ERROR TO RE-ENTER VALUES BECASUE MISSING INFO
       };
 
-    const LoginForm = () => (
+    const RegisterForm = () => (
           <Form
             name="basic"
             labelCol={{
@@ -53,12 +43,12 @@ const Login = () => {
             autoComplete="off"
           >
             <Form.Item
-              label="Correo"
-              name="email"
+              label="Username"
+              name="username"
               rules={[
                 {
                   required: true,
-                  message: 'Favor de entrar con su correo!',
+                  message: 'Please input your username!',
                 },
               ]}
             >
@@ -71,7 +61,7 @@ const Login = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Favor de agregar su clave!',
+                  message: 'Please input your password!',
                 },
               ]}
             >
@@ -84,14 +74,18 @@ const Login = () => {
                 span: 16,
               }}
             >
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
-              <Button>
-              <li>
-              <Link to="/auth/register">Sign Up!</Link>
-              </li>
-              </Button>
+                <Row type="flex" justify='space-evenly'>
+                      <Col align='middle'>
+                        <Button type="primary" htmlType="submit" style={styles.button}>
+                        Register
+                        </Button>
+                        <Button style={styles.button}>
+                        <li>
+                        <Link to="/">Return</Link>
+                        </li>
+                        </Button>
+                      </Col>
+                    </Row>
             </Form.Item>
           </Form>
         );
@@ -100,13 +94,13 @@ const Login = () => {
         <div>
             <Layout style={{height:"100vh"}}>
                 <Header>
-                  CODEKRAFT
+                  CODERKRAFT
                 </Header>
                 <Content>
                     <br />
                     <Row type="flex" justify='space-evenly'>
                       <Col align='middle' >
-                        <LoginForm />
+                        <RegisterForm />
                       </Col>
                     </Row>
                 </Content>
@@ -118,4 +112,18 @@ const Login = () => {
   )
 }
 
-export default Login
+const styles = StyleSheet.create({
+
+    button: {
+        backgroundColor: '#5B9962',
+        height: 50,
+        borderRadius: 5,
+        marginHorizontal: 15,
+        marginVertical: 10,
+        alignItems: 'center',
+        justifyContent: 'space-around'
+      },
+
+});
+
+export default Register
