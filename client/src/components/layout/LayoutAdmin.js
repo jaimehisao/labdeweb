@@ -54,11 +54,11 @@ const HomeLayout = ({children}) => {
                 },
                 {
                   key: "3",
-                  label: `VER TODO`,
+                  label: `VER ARCHIVOS`,
                 },
                 {
                   key: "4",
-                  label: `VER ARCHIVO`,
+                  label: `ELIMINAR ARCHIVO`,
                 },
                 {
                   key: "5",
