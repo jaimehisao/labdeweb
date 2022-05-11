@@ -10,13 +10,15 @@ import HomeAdmin from './components/admin/Home'
 import Upload from './components/admin/Upload'
 import VisualizeAll from './components/admin/VisualizeAll'
 import VisualizeFile from './components/admin/VisualizeFile'
-
+import FileList from './components/student/FileList'
+import HomeLayout from './components/layout/Layout'
 
 const Routes = () => {
     return (
         <UserProvider>
             <Switch>
                 <Route path='/' element={<App />} />
+
                 {/* Private Routes */}
                 <Route element={<PrivateRoute />}>
                     <Route path='/home/student' element={<HomeStudent />} />
@@ -24,7 +26,9 @@ const Routes = () => {
                     <Route path='/home/admin/upload' element={<Upload />} />
                     <Route path='/home/admin/visualizeall' element={<VisualizeAll />} />
                     <Route path='/home/admin/visualizefile' element={<VisualizeFile />} />
+                    <Route path='/documentos/:type' element={<FileList />} />
                 </Route>
+
             </Switch>
         </UserProvider>
     )

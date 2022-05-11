@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
-import { Layout, Menu, Breadcrumb } from 'antd';
-import UserContext from '../../contexts/UserContext';
+import { Layout, Menu, Breadcrumb } from 'antd'
+import UserContext from '../../contexts/UserContext'
+import { useNavigate } from "react-router-dom"
 
 const { 
   Header, 
@@ -11,10 +12,13 @@ const {
 const HomeLayout = ({children}) => {
 
   const { handleLogout } = useContext(UserContext)
+  const navigate = useNavigate()
 
   const menuFunctions = (val) => {
 
     if (val === 'home') {
+
+      navigate('/home/admin')
 
     } else if (val === 'tareas') {
 

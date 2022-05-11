@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd';
-import UserContext from '../../contexts/UserContext';
+import UserContext from '../../contexts/UserContext'
+import { useNavigate } from "react-router-dom"
 
 const { 
   Header, 
@@ -11,16 +12,25 @@ const {
 const HomeLayout = ({children}) => {
 
   const { handleLogout, user } = useContext(UserContext)
+  const navigate = useNavigate()
 
   const menuFunctions = (val) => {
 
     if (val === 'home') {
 
-    } else if (val === 'tareas') {
+      navigate('/home/student')
+
+    } else if (val === 'presentaciones') {
+
+      navigate('/documentos/presentaciones')
 
     } else if (val === 'retos') {
+
+      navigate('/documentos/retos')
       
     } else if (val === 'actividades') {
+
+      navigate('/documentos/actividades')
       
     } else if (val === 'logout') {
       handleLogout()
@@ -47,8 +57,8 @@ const HomeLayout = ({children}) => {
                 },
                 {
                   key: "2",
-                  label: `TAREAS`,
-                  onClick: (e) => { menuFunctions('tareas') },
+                  label: `PRESENTACIONES`,
+                  onClick: (e) => { menuFunctions('presentaciones') },
                 },
                 {
                   key: "3",
