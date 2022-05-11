@@ -87,6 +87,11 @@ const Login = () => {
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
+              <Button>
+              <li>
+              <Link to="/auth/register">Sign Up!</Link>
+              </li>
+              </Button>
             </Form.Item>
           </Form>
         );
