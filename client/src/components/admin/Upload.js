@@ -23,26 +23,37 @@ const config = { header: { "Content-Type": "application/json" } }
 const Acts = () => {
 
     const [componentSize, setComponentSize] = useState('default')
-    const tipo = useRef(null)
-    const nivel = useRef(null)
+    const tipo = useRef(0)
+    const nivel = useRef(0)
 
     const onFormLayoutChange = ({ size }) => {
         setComponentSize(size);
     }
 
     const onFinish = (values) => {
-        console.log(nivel.current)
-        console.log(tipo.current)
+        //console.log(nivel.current)
+        //console.log(tipo.current)
     }
 
     const handleUpload = async (e) => {
-        console.log(e.file)
+        //console.log(e.file)
+        if(e){
+            console.log(e.fileList[0].originFileObj.name)
+            console.log(tipo.current)
+            console.log(nivel.current)
+            //if (tipo.current === 0 || nivel.current === 0) {
+                console.log("HERE")
+                await uploadFile(e.fileList[0].originFileObj)
+           //}
 
-        if (tipo.current === null && nivel.current === null) {
-            await uploadFile(e.file)
+            postFile()
+        }else{
+            console.log("ERROR WHEN UPLOADING")
         }
 
-        postFile()
+        //console.log(e.file)
+
+
     }
 
     const postFile = async () => {

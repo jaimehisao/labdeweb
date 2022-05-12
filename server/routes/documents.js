@@ -13,4 +13,8 @@ router.get('/documentByID/:id', documentByID )
 // POST
 router.post('/saveDocument', protect, saveDocument)
 
+
+
+//router.post('/deleteDocument', protect, delete)
+
 module.exports = router;

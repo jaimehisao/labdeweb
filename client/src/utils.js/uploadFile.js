@@ -1,8 +1,21 @@
-import { getDownloadURL, ref, uploadBytesResumable, get } from 'firebase/storage'
+import { getDownloadURL, getStorage, uploadBytes, ref, uploadBytesResumable, get } from 'firebase/storage'
 import { storage } from '../firebase'
 
 export const uploadFile = (file) => {
 
+    if (!file) return
+    // Create a root reference
+    //const storage = getStorage();
+    const fileToUpload = ref(storage, `documents/${file.name}`);
+    console.log("ready to upload!")
+    // 'file' comes from the Blob or File API
+    uploadBytes(fileToUpload, file).then((snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        console.log(progress)
+        console.log('Uploaded a blob or file!');
+    });
+
+    /*
     if(!file) return
 
     console.log(file)
@@ -17,6 +30,9 @@ export const uploadFile = (file) => {
     () => {
         getDownloadURL(uploadTask.snapshot.ref)
         .then(url => console.log(url))
+        { return url }
     }
     )
+
+     */
 }
