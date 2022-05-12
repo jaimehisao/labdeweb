@@ -3,3 +3,4 @@ server/node_modules
 ./config
 /config
 ./node_modules
+*.env
