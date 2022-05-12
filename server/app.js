@@ -27,12 +27,12 @@ app.use('/api/documents', require('./routes/documents')) // DOCUMENTS
 const port = process.env.PORT || 3001
 
 
-if(process.env.NODE_ENV === "production") {
+// if(process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client", "build")))
   app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
   });
-}
+// }
 
 const server = app.listen(port, () => {
     console.log('Codekraft port: ' + port)

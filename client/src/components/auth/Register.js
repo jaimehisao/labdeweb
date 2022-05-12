@@ -76,10 +76,10 @@ const Register = () => {
             >
                 <Row type="flex" justify='space-evenly'>
                       <Col align='middle'>
-                        <Button type="primary" htmlType="submit" style={styles.button}>
+                        <Button type="primary" htmlType="submit" >
                         Register
                         </Button>
-                        <Button style={styles.button}>
+                        <Button >
                         <li>
                         <Link to="/">Return</Link>
                         </li>
@@ -112,6 +112,7 @@ const Register = () => {
   )
 }
 
+/*
 const styles = StyleSheet.create({
 
     button: {
@@ -125,5 +126,6 @@ const styles = StyleSheet.create({
       },
 
 });
+*/
 
 export default Register

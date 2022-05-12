@@ -89,7 +89,7 @@ const Login = () => {
               </Button>
               <Button>
               <li>
-              <Link to="/auth/register">Sign Up!</Link>
+                sign up
               </li>
               </Button>
             </Form.Item>
