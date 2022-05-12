@@ -4,3 +4,4 @@ server/node_modules
 /config
 ./node_modules
 *.env
+.idea
