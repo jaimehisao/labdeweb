@@ -41,6 +41,7 @@ const Acts = () => {
             console.log(e.fileList[0].originFileObj.name)
             console.log(tipo.current)
             console.log(nivel.current)
+
             //if (tipo.current === 0 || nivel.current === 0) {
                 console.log("HERE")
                 await uploadFile(e.fileList[0].originFileObj)

@@ -8,12 +8,37 @@ export const uploadFile = (file) => {
     //const storage = getStorage();
     const fileToUpload = ref(storage, `documents/${file.name}`);
     console.log("ready to upload!")
+    const uploadTask = uploadBytesResumable(fileToUpload, file)
+    uploadTask.on("state_changed", (snapshot) => {
+            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        }, (error) => console.log(error),
+        () => {
+            getDownloadURL(uploadTask.snapshot.ref)
+                .then(url => {
+                    console.log(url)
+                    return url
+                })
+        }
+    )
+
     // 'file' comes from the Blob or File API
-    uploadBytes(fileToUpload, file).then((snapshot) => {
+
+    /*
+    uploadTask(fileToUpload, file).then((snapshot) => {
         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
         console.log(progress)
         console.log('Uploaded a blob or file!');
-    });
+    }, (error) => console.log(error),
+        () => {
+            getDownloadURL(uploadTask.snapshot.ref)
+                .then(url => console.log(url))
+            { return url }
+        }
+    );
+
+     */
+
+
 
     /*
     if(!file) return
