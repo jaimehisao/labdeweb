@@ -21,13 +21,13 @@ const Home = () => {
     <div>
 
     <Carousel effect="fade">
-      <div>
+      <div class="carousel-item">
       <h3 style={contentStyle}><img src={tareas} alt="photo" className="center" /></h3>
       </div>
-      <div>
+      <div class="carousel-item">
         <h3 style={contentStyle}><img src={retos} alt="photo" className="center" /></h3>
       </div>
-      <div>
+      <div class="carousel-item">
       <h3 style={contentStyle}><img src={acts} alt="photo" className="center" /></h3>
       </div>
     </Carousel>

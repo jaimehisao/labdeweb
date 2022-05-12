@@ -17,7 +17,7 @@ const Register = () => {
 
         } catch (e) {
           // ERROR 
-
+            console.log("Error when registering user " + e);
         }
       };
     

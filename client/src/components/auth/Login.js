@@ -89,7 +89,7 @@ const Login = () => {
               </Button>
               <Button>
               <li>
-                sign up
+                Sign Up
               </li>
               </Button>
             </Form.Item>
