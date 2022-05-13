@@ -26,32 +26,8 @@ exports.saveDocument = async(req, res, next) => {
         const doc  = await Document.create({
             fileName,
             file,
-            activityType,
-            level,
-        })
-
-        res.status(201).json({
-            success: true,
-            document: doc,
-        })
-
-    } catch (error) {
-        next(error)
-    }
-
-}
-
-exports.saveDocument = async(req, res, next) => {
-
-    const {fileName, activityType, level, file} = req.body
-
-    try {
-
-        const doc  = await Document.create({
-            fileName,
-            file, // url
-            activityType, //
-            level, //
+            activityType: types[activityType],
+            level: levels[level],
         })
 
         res.status(201).json({

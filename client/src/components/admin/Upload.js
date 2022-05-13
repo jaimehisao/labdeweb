@@ -1,12 +1,15 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import HomeLayout from '../layout/LayoutAdmin'
+import axios from 'axios'
 import { Carousel } from 'antd'
 import upload from '../../assets/upload.png'
 import { Upload, Form, message, Button, Select, } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
-import axios from 'axios'
+import UserContext from '../../contexts/UserContext'
 
-import { uploadFile } from '../../utils.js/uploadFile'
+// import { uploadFile } from '../../utils.js/uploadFile'
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
+import { storage } from '../../firebase'
 
 const contentStyle = {
     height: '480px',
@@ -22,43 +25,65 @@ const config = { header: { "Content-Type": "application/json" } }
 
 const Acts = () => {
 
+    const { token } = useContext(UserContext)
+
     const [componentSize, setComponentSize] = useState('default')
-    const tipo = useRef(0)
-    const nivel = useRef(0)
+    const [fileUrl, setFileUrl] = useState(null)
+    const [fileName, setFileName] = useState(null)
+    const [tipo, setTipo] = useState(null)
+    const [nivel, setNivel] = useState(null)
 
     const onFormLayoutChange = ({ size }) => {
         setComponentSize(size);
     }
 
+    const config = { headers: { Authorization: `Bearer ${token}` } }
+
     const onFinish = (values) => {
-        //console.log(nivel.current)
-        //console.log(tipo.current)
+
+        const formData = {
+            level: nivel,
+            file: fileUrl,
+            activityType: tipo,
+            fileName: fileName
+        }
+
+        postFile(formData)
     }
 
     const handleUpload = async (e) => {
-        //console.log(e.file)
-        if(e){
-            console.log(e.fileList[0].originFileObj.name)
-            console.log(tipo.current)
-            console.log(nivel.current)
-
-            //if (tipo.current === 0 || nivel.current === 0) {
-                console.log("HERE")
-                await uploadFile(e.fileList[0].originFileObj)
-           //}
-
-            postFile()
-        }else{
-            console.log("ERROR WHEN UPLOADING")
-        }
-
-        //console.log(e.file)
-
-
+        if ( tipo !== null && nivel !== null ) {
+            await uploadFile(e.fileList[0].originFileObj)
+            setFileName(e.fileList[0].name)
+        } else return 
     }
 
-    const postFile = async () => {
-        // USANDO AXIOS, REALIZAR EL "POST"
+    const uploadFile = async (file) => {
+        if (!file) return
+
+        const fileToUpload = ref(storage, `documents/${file.name}`)
+        
+        const uploadTask = uploadBytesResumable(fileToUpload, file)
+    
+        uploadTask.on("state_changed", (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                // console.log(progress)
+            }, (error) => console.log(error),
+            () => {
+                return getDownloadURL(uploadTask.snapshot.ref)
+                .then(url => {
+                    setFileUrl(url)
+                })
+            }
+        )
+    }
+
+    const postFile = async (formData) => {
+        const { data } =  await axios.post(`/api/documents/saveDocument`, formData, config)
+        setFileName(null)
+        setFileUrl(null)
+        setNivel(null)
+        setTipo(null)
     }
     
     const MainBlockUpload = () => (
@@ -83,26 +108,45 @@ const Acts = () => {
             onFinish={onFinish}
         >
             <Form.Item label="Nivel">
-                <Select onChange={(e) => nivel.current = e} >
+                <Select 
+                defaultValue={nivel} 
+                onChange={(e) => setNivel(e)} 
+                placeholder="Nivel para el archivo"
+                >
                     <Select.Option value="1">VIDEO JUEGOS</Select.Option>
                     <Select.Option value="2">PYTHON BASICO</Select.Option>
                     <Select.Option value="3">PYTHON INTERMEDIO</Select.Option>
                 </Select>
             </Form.Item>
             <Form.Item label="Tipo">
-                <Select  onChange={(e) => tipo.current = e} >
+                <Select 
+                defaultValue={tipo} 
+                onChange={(e) => setTipo(e)} 
+                placeholder="Tipo del archivo"
+                >
                     <Select.Option value="1">RETO</Select.Option>
                     <Select.Option value="2">PRESENTACION</Select.Option>
                     <Select.Option value="3">ACTIVIDAD</Select.Option>
                 </Select>
             </Form.Item>
             <Form.Item>
-                <Upload onChange={handleUpload}>
-                    <Button>Select file</Button>
-                </Upload>
+                {
+                    ( tipo !== null && nivel !== null ) 
+                    ?  <Upload onChange={handleUpload}> <Button icon={<UploadOutlined />} type="primary" > Selecciona Archivo </Button> </Upload>
+                    :  <Button icon={<UploadOutlined />}> Selecciona nivel y tipo </Button>
+                }
             </Form.Item>
+            {
+                fileName &&
+                <label> {fileName} listo! </label>
+            }
+            <br/>
             <Form.Item >
-                <Button type="primary" htmlType="submit" >Submit</Button>
+                {
+                    fileUrl 
+                    ?  <Button type="primary" htmlType="submit" >Submit</Button>
+                    :  <Button> Submit </Button>
+                }
             </Form.Item>
         </Form>
     )

@@ -33,12 +33,9 @@ const FileList = () => {
         fetchDocuments()
     }, [type])
 
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
     const fetchDocuments = async () => {
         const { data } = await axios.get(`/api/documents/filesByLevelAndType/${levels[user.level]}/${types[type.toUpperCase()]}`)
-        await delay(1000)
-        console.log(data)
+        // console.log(data)
         setDocuments(data.documents)
         setLoading(false)
     }
