@@ -16,13 +16,13 @@ const Routes = () => {
     return (
         <UserProvider>
             <Switch>
+                <Route path='/register' element={<Register />} />
                 <Route path='/' element={<App />} />
 
                 {/* Private Routes */}
                 <Route element={<PrivateRoute />}>
                     <Route path='/home/student' element={<HomeStudent />} />
                     <Route path='/home/admin' element={<HomeAdmin />} />
-                    <Route path='/auth/register' element={<Register />} />
                     <Route path='/home/admin/upload' element={<Upload />} />
                     <Route path='/home/admin/visualizeall' element={<VisualizeAll />} />
                     <Route path='/documentos/:type' element={<FileList />} />
