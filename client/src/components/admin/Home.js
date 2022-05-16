@@ -6,6 +6,8 @@ import { Row, Col } from 'antd'
 import subir from '../../assets/subir.png'
 import verarch from '../../assets/verarch.png'
 import vertodo from '../../assets/vertodo.png'
+import { useNavigate } from "react-router-dom"
+
 
 const Home = () => {
 
@@ -17,6 +19,22 @@ const Home = () => {
     textAlign: 'center',
     background: '#2f38c5',
   };
+
+    let navigate = useNavigate();
+    const routeChangeUpload = () =>{
+        let path = '/home/admin/upload';
+        navigate(path);
+    }
+
+    const routeChangeShow = () =>{
+        let path = '/home/admin/visualizeall';
+        navigate(path);
+    }
+
+    const routeChangeDelete = () =>{
+        let path = '/home/admin';
+        navigate(path);
+    }
 
   const MainBlockAdmin = () => (
     <div>
@@ -34,9 +52,9 @@ const Home = () => {
         </Carousel>
 
       <Row justify="space-around">
-        <Col className='activity-block' span={5}>SUBIR ARCHIVOS</Col>
-        <Col className='activity-block' span={5}>VISUALIZAR ARCHIVOS</Col>
-        <Col className='activity-block' span={5}>ELIMINAR ARCHIVOS</Col>
+          <Col className='activity-block' span={5} onClick={routeChangeUpload}>SUBIR ARCHIVOS</Col>
+          <Col className='activity-block' span={5} onClick={routeChangeShow}>VISUALIZAR ARCHIVOS</Col>
+          <Col className='activity-block' span={5} onClick={routeChangeDelete}>ELIMINAR ARCHIVOS</Col>
       </Row>
     </div>
   )
