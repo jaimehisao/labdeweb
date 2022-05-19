@@ -3,14 +3,16 @@ const User = require('../models/user.model')
 // REGISTER
 // POST
 exports.register = async (req, res, next) => {
+    console.log('hola');
 
-    const { name, email, password, userType, level } = req.body;
+    const { name, email, password, confPassword, level } = req.body;
 
+    console.log(req.body);
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !confPassword || !level) {
         return res.status(400).json({
             success: false,
-            message: 'Se necesita un nombre, e-mail y clave para poder registrarse'
+            message: 'Se necesita un nombre, e-mail, clave y curso para poder registrarse'
         })
     }
 
@@ -24,6 +26,13 @@ exports.register = async (req, res, next) => {
         })
     }
 
+    if (confPassword !== password){
+        return res.status(400).json({
+            success: false,
+            message: 'La contraseña debe ser la misma en los dos campos!'
+        })
+    }
+
     try {
         // Verificar que no exista en la base de datos
         const userSearch = await User.findOne({ email }).select("+password")
@@ -32,10 +41,10 @@ exports.register = async (req, res, next) => {
 
             const user = await User.create({
                 username: name,
-                email,
-                password,
-                userType,
-                level,
+                email: email,
+                password: password,
+                userType: "STUDENT",
+                level: level,
             })
 
             const token = user.getSignedToken()

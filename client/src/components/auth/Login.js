@@ -51,6 +51,10 @@ const Login = () => {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
+            
+            style={{
+              width: '500px',
+            }}
           >
             <Form.Item
               label="Correo"
@@ -87,10 +91,8 @@ const Login = () => {
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
-              <Button>
-              <li>
+              <Button onClick={() => navigate('/register')}>
                 Sign Up
-              </li>
               </Button>
             </Form.Item>
           </Form>
