@@ -7,8 +7,8 @@ const { protect } = require('../middleware/protect')
 const { saveDocument, byLevelAndType, documentByID } = require('../controllers/documents')
 
 // GET
-router.get('/filesByLevelAndType/:level/:type', byLevelAndType )
-router.get('/documentByID/:id', documentByID )
+router.get('/filesByLevelAndType/:level/:type', byLevelAndType ) // missing protect
+router.get('/documentByID/:id', protect, documentByID )
 
 // POST
 router.post('/saveDocument', protect, saveDocument)

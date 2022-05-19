@@ -11,6 +11,7 @@ import HomeAdmin from './components/admin/Home'
 import Upload from './components/admin/Upload'
 import VisualizeAll from './components/admin/VisualizeAll'
 import FileList from './components/student/FileList'
+import ViewFile from './components/general/ViewFile';
 
 const Routes = () => {
     return (
@@ -26,6 +27,7 @@ const Routes = () => {
                     <Route path='/home/admin/upload' element={<Upload />} />
                     <Route path='/home/admin/visualizeall' element={<VisualizeAll />} />
                     <Route path='/documentos/:type' element={<FileList />} />
+                    <Route path='/documento/:id' element={<ViewFile />} />
                 </Route>
 
             </Switch>

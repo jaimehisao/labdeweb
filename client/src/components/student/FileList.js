@@ -1,10 +1,11 @@
 import React, {useContext, useEffect, useState } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import UserContext from '../../contexts/UserContext'
 import HomeLayout from '../layout/Layout'
 import axios from 'axios'
 import { Spin, List, message, Skeleton, Divider } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
+
 
 const config = { header: { "Content-Type": "application/json" } }
 
@@ -15,6 +16,7 @@ const FileList = () => {
 
     const [loading, setLoading] = useState(false)
     const [ documents, setDocuments ] = useState([])
+    const navigate = useNavigate()
 
     const levels = {
         "VIDEO JUEGOS" : "1",
@@ -40,6 +42,10 @@ const FileList = () => {
         setLoading(false)
     }
 
+    const onDocumentClick = (id) => {
+        navigate(`/documento/${id}`)
+    }
+
     const DocumentList = () => (
         <div
         id="scrollableDiv"
@@ -61,7 +67,7 @@ const FileList = () => {
                 renderItem={item => (
                     <List.Item key={item._id}>
                     <List.Item.Meta
-                        title={<a href="https://ant.design">{item.fileName}</a>}
+                        title={<a onClick={(e) => onDocumentClick(item._id)}>{item.fileName}</a>}
                         description={user.level}
                     />
                     <div>Content</div>

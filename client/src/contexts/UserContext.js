@@ -1,7 +1,6 @@
-import React, { createContext, useState, useEffect, useContext } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
-import { isExpired, decodeToken } from "react-jwt";
+import { isExpired, decodeToken } from "react-jwt"
 
 
 export const UserContext = createContext(null)
@@ -35,7 +34,9 @@ export const UserProvider = ({ children }) => {
             setToken(data)
 
             const decodedToken = decodeToken(data.token)
-            const isExpiredToken = isExpired(data.token)
+            // const isExpiredToken = isExpired(data.token)
+
+            
 
             setToken(data.token)
             setUser(decodedToken)
@@ -59,7 +60,7 @@ export const UserProvider = ({ children }) => {
             const { data } = await axios.post('/api/auth/register', formData, config)
 
             const decodedToken = decodeToken(token)
-            const isExpiredToken = isExpired(token)
+            // const isExpiredToken = isExpired(token)
 
             setToken(data.token)
             setUser(decodedToken)
