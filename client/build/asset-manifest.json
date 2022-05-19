@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.a7c41657.css",
-    "main.js": "/static/js/main.ed6f3fcf.js",
+    "main.js": "/static/js/main.7d21ed6c.js",
     "static/media/upload.png": "/static/media/upload.69d54bbcc66edfc00db7.png",
     "static/media/retos.png": "/static/media/retos.2b856b8cd10ed37ef2c4.png",
     "static/media/tareas.png": "/static/media/tareas.6dc177069f24be8e9e6c.png",
@@ -11,10 +11,10 @@
     "static/media/vertodo.png": "/static/media/vertodo.9d3da7e79f715a8213ae.png",
     "index.html": "/index.html",
     "main.a7c41657.css.map": "/static/css/main.a7c41657.css.map",
-    "main.ed6f3fcf.js.map": "/static/js/main.ed6f3fcf.js.map"
+    "main.7d21ed6c.js.map": "/static/js/main.7d21ed6c.js.map"
   },
   "entrypoints": [
     "static/css/main.a7c41657.css",
-    "static/js/main.ed6f3fcf.js"
+    "static/js/main.7d21ed6c.js"
   ]
 }
