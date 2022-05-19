@@ -3,6 +3,7 @@ import { Form, Input, Button, Layout, Row, Col } from 'antd'
 import UserContext from '../../contexts/UserContext'
 import { useNavigate } from "react-router-dom"
 import { decodeToken } from "react-jwt";
+import whitelogo from '../../assets/justTextWhite.png'
 const { Header, Footer, Content } = Layout;
 
 const Login = () => {
@@ -62,7 +63,7 @@ const Login = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Favor de entrar con su correo!',
+                  message: 'Favor de ingresar con su correo!',
                 },
               ]}
             >
@@ -101,8 +102,9 @@ const Login = () => {
   return (
         <div>
             <Layout style={{height:"100vh"}}>
-                <Header>
-                  CODEKRAFT
+                <Header style={{backgroundColor: "#2f39c5"}}>
+                  {/* CODEKRAFT */}
+                  <img src={whitelogo} alt = "Logo" width={150}/>
                 </Header>
                 <Content>
                     <br />
