@@ -23,14 +23,16 @@ const ViewFile = () => {
     const fetchDocument = async () => {
         const { data } = await axios.get(`/api/documents/documentByID/${id}`, config)
         setFile(`${data.document.file}`)
+        // setFile('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf')
         setLoading(false)
     }
 
+    // file={{ url: file, httpHeaders: { 'X-CustomHeader': '40359820958024350238508234', "Access-Control-Allow-Origin": "*", crossOrigin: "anonymous" } }}
+
     const ShowPDF = () => (
-        <Document
-            file={{ url: file, httpHeaders: { 'X-CustomHeader': '40359820958024350238508234', "Access-Control-Allow-Origin": "*", crossOrigin: "anonymous" }, withCredentials: true }}
-       >
-      </Document>
+        <Document 
+            file={{ url: file, httpHeaders: {"Access-Control-Allow-Origin": "*"} }}
+        />
     )
 
   return (
