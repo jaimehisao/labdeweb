@@ -9,7 +9,7 @@ const {
   Content 
 } = Layout;
 
-const HomeLayout = ({children}) => {
+const HomeLayoutAdmin = ({children}) => {
 
   const { handleLogout } = useContext(UserContext)
   const navigate = useNavigate()
@@ -100,4 +100,4 @@ const HomeLayout = ({children}) => {
   )
 }
 
-export default HomeLayout
+export default HomeLayoutAdmin

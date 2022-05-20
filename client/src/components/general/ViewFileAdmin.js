@@ -10,9 +10,8 @@ import { getDownloadURL, ref } from 'firebase/storage'
 import { storage } from '../../firebase'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
-
-const ViewFile = () => {
-    
+const ViewFileAdmin = () => {
+  
     const { id } = useParams()
     const { user, token } = useContext(UserContext)
     const [file, setFile] = useState(null)
@@ -59,20 +58,20 @@ const ViewFile = () => {
     }
 
   return (
-    <HomeLayout>
-        <div>
-            <Row justify="center" >
-                <Col align="center" >
-                    {
-                        loading
-                        ? <Spin/>
-                        : <embed id="myPdf" width="800px" height="2100px" />
-                    }
-                </Col>
-            </Row>
-        </div>
-    </HomeLayout>
+    <HomeLayoutAdmin>
+            <div>
+                <Row justify="center" >
+                    <Col align="center" >
+                        {
+                            loading
+                            ? <Spin/>
+                            : <embed id="myPdf" width="800px" height="2100px" />
+                        }
+                    </Col>
+                </Row>
+            </div>
+    </HomeLayoutAdmin>
   )
 }
 
-export default ViewFile
+export default ViewFileAdmin

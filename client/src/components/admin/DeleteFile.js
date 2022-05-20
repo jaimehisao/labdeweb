@@ -1,5 +1,5 @@
 import React from 'react'
-import HomeLayout from '../layout/LayoutAdmin'
+import HomeLayoutAdmin from '../layout/LayoutAdmin'
 import { Carousel } from 'antd'
 
 const DeleteFile = () => {
@@ -25,9 +25,9 @@ const DeleteFile = () => {
       )
 
     return (
-        <HomeLayout>
+        <HomeLayoutAdmin>
             <MainBlockDel />
-        </HomeLayout>
+        </HomeLayoutAdmin>
     )
 }
 

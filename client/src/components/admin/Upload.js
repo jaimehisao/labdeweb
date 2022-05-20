@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react'
-import HomeLayout from '../layout/LayoutAdmin'
+import HomeLayoutAdmin from '../layout/LayoutAdmin'
 import axios from 'axios'
 import { Carousel } from 'antd'
 import upload from '../../assets/upload.png'
@@ -152,10 +152,10 @@ const Acts = () => {
     )
     
     return (
-        <HomeLayout>
+        <HomeLayoutAdmin>
             <MainBlockUpload />
             <UploadForm />
-        </HomeLayout>
+        </HomeLayoutAdmin>
     )
 }
 

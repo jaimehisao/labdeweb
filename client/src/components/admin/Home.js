@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../css/App.css'
-import HomeLayout from '../layout/LayoutAdmin'
+import HomeLayoutAdmin from '../layout/LayoutAdmin'
 import { Carousel } from 'antd'
 import { Row, Col } from 'antd'
 import subir from '../../assets/subir.png'
@@ -60,9 +60,9 @@ const Home = () => {
   )
 
   return (
-    <HomeLayout>
+    <HomeLayoutAdmin>
       <MainBlockAdmin />
-    </HomeLayout>
+    </HomeLayoutAdmin>
   )
 
 }
