@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react'
-import { Form, Input, Button, Layout, Row, Col } from 'antd'
+import React, { useContext, useEffect, useState } from 'react'
+import { Form, Input, Button, Layout, Row, Col, Alert } from 'antd'
 import UserContext from '../../contexts/UserContext'
 import { useNavigate } from "react-router-dom"
 import { decodeToken } from "react-jwt";
@@ -9,6 +9,7 @@ const { Header, Footer, Content } = Layout;
 const Login = () => {
     const navigate = useNavigate()
     const { user, userType, handleLogin, setUser } = useContext(UserContext)
+    const [error, setError] = useState(false)
 
     useEffect(() => {
 
@@ -21,6 +22,8 @@ const Login = () => {
     const onFinish = async (values) => {
         const data = await handleLogin(values)
 
+        setError(false)
+
         if (data.success) {
           const decodedToken = decodeToken(data.token)
           console.log(decodedToken)
@@ -28,6 +31,7 @@ const Login = () => {
           
         } else if (data.success === false) {
             // setError('Failed to log in')
+            setError(true)
         }
     }
 
@@ -107,6 +111,10 @@ const Login = () => {
                   <img src={whitelogo} alt = "Logo" width={150}/>
                 </Header>
                 <Content style={{paddingRight:120 }}>
+                    <br/>
+                    {
+                      error === true && <Alert message="Credenciales Incorrectas" type="error" />
+                    }
                     <br />
                     <Row type="flex" justify='space-evenly'>
                       <Col align='middle' >

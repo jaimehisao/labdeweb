@@ -1,6 +1,6 @@
 //Basic imports
-import React, { useContext } from 'react'
-import { Form, Input, Button, Layout, Row, Col } from 'antd';
+import React, { useContext, useState } from 'react'
+import { Form, Input, Button, Layout, Row, Col, Alert } from 'antd';
 import UserContext from '../../contexts/UserContext'
 import { useNavigate } from "react-router-dom"
 import { decodeToken } from "react-jwt";
@@ -10,6 +10,7 @@ const { Header, Footer, Content } = Layout;
 const Register = () => {
   const navigate = useNavigate()
   const { user, userType, handleSignup, setUser } = useContext(UserContext)
+  const [error, setError] = useState(false)
 
   const onFinish = async (values) => {
     const data = await handleSignup(values)
@@ -145,6 +146,8 @@ const Register = () => {
                   CODEKRAFT
                 </Header>
                 <Content>
+                    <br/>
+                    <Alert message="Error Text" type="error" />
                     <br />
                     <Row type="flex" justify='space-evenly'>
                       <Col align='middle' >
