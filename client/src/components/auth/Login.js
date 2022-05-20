@@ -106,7 +106,7 @@ const Login = () => {
                   {/* CODEKRAFT */}
                   <img src={whitelogo} alt = "Logo" width={150}/>
                 </Header>
-                <Content>
+                <Content style={{paddingRight:120 }}>
                     <br />
                     <Row type="flex" justify='space-evenly'>
                       <Col align='middle' >
