@@ -30,7 +30,7 @@ const HomeLayoutAdmin = ({children}) => {
       
     } else if (val === 'eliminar') {
 
-      navigate('/home/admin/delete')
+      navigate('/home/admin')
       
     } else if (val === 'logout') {
       handleLogout()
