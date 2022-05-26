@@ -3,11 +3,8 @@ const User = require('../models/user.model')
 // REGISTER
 // POST
 exports.register = async (req, res, next) => {
-    console.log('hola');
 
     const { name, email, password, confPassword, level } = req.body;
-
-    console.log(req.body);
 
     if (!name || !email || !password || !confPassword || !level) {
         return res.status(400).json({

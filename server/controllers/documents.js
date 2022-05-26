@@ -75,7 +75,7 @@ exports.documentByID = async (req, res, next) => {
     try {
         const id = req.params.id
 
-        const doc = await Document.findOne({ _id: id })
+        await Document.findOne({ _id: id });
 
         return res.status(200).json({
             success: true,
@@ -86,6 +86,26 @@ exports.documentByID = async (req, res, next) => {
         return res.status(200).json({
             success: false,
             documents: {}
+        })
+    }
+}
+
+// DELETE DOCUMENT BY _id
+// Delete
+exports.deleteDocumentByID = async (req, res, next) => {
+
+    try {
+        const id = req.params.id
+
+        const doc = await Document.deleteOne({ _id: id })
+
+        return res.status(200).json({
+            success: true,
+        })
+
+    } catch (error) {
+        return res.status(200).json({
+            success: false,
         })
     }
 }
