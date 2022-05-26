@@ -75,7 +75,7 @@ exports.documentByID = async (req, res, next) => {
     try {
         const id = req.params.id
 
-        await Document.findOne({ _id: id });
+        const doc = await Document.findOne({ _id: id });
 
         return res.status(200).json({
             success: true,
