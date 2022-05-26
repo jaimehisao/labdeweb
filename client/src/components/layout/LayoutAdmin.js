@@ -11,7 +11,7 @@ const {
 
 const HomeLayoutAdmin = ({children}) => {
 
-  const { handleLogout } = useContext(UserContext)
+  const { handleLogout, user } = useContext(UserContext)
   const navigate = useNavigate()
 
   const menuFunctions = (val) => {
@@ -37,6 +37,8 @@ const HomeLayoutAdmin = ({children}) => {
     }
 
   }
+
+  console.log(user)
 
   return (
     <Layout style={{minHeight:"100vh"}}>
@@ -84,7 +86,8 @@ const HomeLayoutAdmin = ({children}) => {
         </Header>
         <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>{"USERNAME"}</Breadcrumb.Item>
+            <Breadcrumb.Item> Admin </Breadcrumb.Item>
+            <Breadcrumb.Item>{ user.username }</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-background" style={{ padding: 24, minHeight: 400 }}>
             {children}
