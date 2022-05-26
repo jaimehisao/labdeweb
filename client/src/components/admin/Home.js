@@ -32,7 +32,7 @@ const Home = () => {
     }
 
     const routeChangeDelete = () =>{
-      let path = '/home/admin/delete';
+        let path = '/home/admin';
         navigate(path);
     }
 
