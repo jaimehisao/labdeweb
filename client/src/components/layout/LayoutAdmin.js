@@ -38,8 +38,6 @@ const HomeLayoutAdmin = ({children}) => {
 
   }
 
-  console.log(user)
-
   return (
     <Layout style={{minHeight:"100vh"}}>
 

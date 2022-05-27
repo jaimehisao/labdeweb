@@ -52,7 +52,7 @@ const Acts = () => {
     }
 
     const handleUpload = async (e) => {
-        if ( tipo !== null && nivel !== null ) {
+        if ( tipo !== null && nivel !== null && e.fileList[0].originFileObj.type == "application/pdf") {
             await uploadFile(e.fileList[0].originFileObj)
             setFileName(e.fileList[0].name)
         } else return 
